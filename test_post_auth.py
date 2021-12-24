@@ -1,6 +1,6 @@
 import requests
 import pytest
-#vvb
+
 global url
 url = "https://petstore.swagger.io/v2/user"
 
