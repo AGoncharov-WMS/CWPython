@@ -12,22 +12,22 @@ request = {'id': 777999, 'username': "Antuanetta", 'firstName': "Antuanetta", 'l
 
 # проверка создания пользователя без авторизации
 def test_post_create_user():
-    response = requests.post(url, json=request)
-    print('Response post = ', response.json())
+    response_create_user = requests.post(url, json=request)
+    print('Response post = ', response_create_user.json())
     # если пользователь создан то в message записан id, а нам этого не надо
-    assert response.json()['message'] != str(request['id'])
+    assert response_create_user.json()['message'] != str(request['id'])
 
 
 # проверка удаления пользователя без авторизации
 def test_delete_user():
-    response = requests.delete(url + '/' + request['username'])
-    print('Response delete = ', response.json())
+    response_del_user = requests.delete(url + '/' + request['username'])
+    print('Response delete = ', response_del_user.json())
     # если пользователь удалён то в message записан username, а нам этого не надо. Без авторизации удалять нельзя
-    assert response.json()['message'] != str(request['username'])
+    assert response_del_user.json()['message'] != str(request['username'])
 
 
 # проверка выхода из системы без авторизации
 def test_get_logout():
-    response = requests.get(url + '/logout')
+    response_logout = requests.get(url + '/logout')
     # Ожидаю сообщение, что авторизация не выполнена
-    assert response.json()['message'] != 'ok'
+    assert response_logout.json()['message'] != 'ok'
